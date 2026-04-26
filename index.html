@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  Kenshu Compass — 単一HTMLビルド
+  サビ管・児発管 研修管理 / オフライン動作 / モバイル対応
+  生成日: 2026-04-26
+  使い方: このHTMLファイルを Galaxy Z Fold などの Android Chrome で
+         直接開くだけ。データは端末ブラウザの localStorage に保存。
+  Electron版との同期: 右上⋯メニュー → 「バックアップを書き出す」
+                    で JSON 出力 → 相手側で「データを復元」
+  ============================================================
+-->
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kenshu Compass">
+<title>Kenshu Compass — 研修の、道しるべ。</title>
+<link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Kenshu%20Compass%20%E2%80%94%20%E7%A0%94%E4%BF%AE%E7%AE%A1%E7%90%86%22%2C%22short_name%22%3A%22Kenshu%20Compass%22%2C%22description%22%3A%22%E3%82%B5%E3%83%93%E7%AE%A1%E3%83%BB%E5%85%90%E7%99%BA%E7%AE%A1%20%E7%A0%94%E4%BF%AE%E7%AE%A1%E7%90%86%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22display_override%22%3A%5B%22standalone%22%2C%22minimal-ui%22%5D%2C%22orientation%22%3A%22any%22%2C%22background_color%22%3A%22%23f8fafc%22%2C%22theme_color%22%3A%22%231e3a8a%22%2C%22lang%22%3A%22ja%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Butf8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520512%2520512%2522%253E%250A%2520%2520%253Cdefs%253E%250A%2520%2520%2520%2520%253ClinearGradient%2520id%253D%2522bg%2522%2520x1%253D%252210%2525%2522%2520y1%253D%25220%2525%2522%2520x2%253D%252290%2525%2522%2520y2%253D%2522100%2525%2522%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%25220%2525%2522%2520stop-color%253D%2522%25231e3a8a%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%252255%2525%2522%2520stop-color%253D%2522%25231e40af%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%2522100%2525%2522%2520stop-color%253D%2522%25230d9488%2522%252F%253E%250A%2520%2520%2520%2520%253C%252FlinearGradient%253E%250A%2520%2520%2520%2520%253CradialGradient%2520id%253D%2522glow%2522%2520cx%253D%252250%2525%2522%2520cy%253D%252250%2525%2522%2520r%253D%252250%2525%2522%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%25220%2525%2522%2520stop-color%253D%2522%2523ffffff%2522%2520stop-opacity%253D%25220.18%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%2522100%2525%2522%2520stop-color%253D%2522%2523ffffff%2522%2520stop-opacity%253D%25220%2522%252F%253E%250A%2520%2520%2520%2520%253C%252FradialGradient%253E%250A%2520%2520%253C%252Fdefs%253E%250A%250A%2520%2520%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522112%2522%2520fill%253D%2522url(%2523bg)%2522%252F%253E%250A%2520%2520%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522112%2522%2520fill%253D%2522url(%2523glow)%2522%252F%253E%250A%250A%2520%2520%253Cg%2520fill%253D%2522none%2522%2520stroke%253D%2522%2523ffffff%2522%2520stroke-linecap%253D%2522round%2522%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522176%2522%2520stroke-opacity%253D%25220.08%2522%2520stroke-width%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522144%2522%2520stroke-opacity%253D%25220.14%2522%2520stroke-width%253D%25221.5%2522%252F%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522112%2522%2520stroke-opacity%253D%25220.22%2522%2520stroke-width%253D%25221.5%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Cg%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.45%2522%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522252%2522%2520y%253D%252270%2522%2520%2520width%253D%25228%2522%2520height%253D%252218%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522252%2522%2520y%253D%2522424%2522%2520width%253D%25228%2522%2520height%253D%252218%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%252270%2522%2520%2520y%253D%2522252%2522%2520width%253D%252218%2522%2520height%253D%25228%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522424%2522%2520y%253D%2522252%2522%2520width%253D%252218%2522%2520height%253D%25228%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Cg%2520transform%253D%2522rotate(-24%2520256%2520256)%2522%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520256%252092%2520L%2520292%2520256%2520L%2520256%2520244%2520Z%2522%2520fill%253D%2522%2523fde68a%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520220%2520256%2520L%2520256%252092%2520L%2520256%2520244%2520Z%2522%2520fill%253D%2522%2523fbbf24%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520256%2520420%2520L%2520292%2520256%2520L%2520256%2520268%2520Z%2522%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.85%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520220%2520256%2520L%2520256%2520420%2520L%2520256%2520268%2520Z%2522%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.55%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%252220%2522%2520fill%253D%2522%2523ffffff%2522%252F%253E%250A%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%252210%2522%2520fill%253D%2522%25231e3a8a%2522%252F%253E%250A%253C%252Fsvg%253E%250A%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Butf8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520512%2520512%2522%253E%250A%2520%2520%253Cdefs%253E%250A%2520%2520%2520%2520%253ClinearGradient%2520id%253D%2522bg%2522%2520x1%253D%252210%2525%2522%2520y1%253D%25220%2525%2522%2520x2%253D%252290%2525%2522%2520y2%253D%2522100%2525%2522%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%25220%2525%2522%2520stop-color%253D%2522%25231e3a8a%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%252255%2525%2522%2520stop-color%253D%2522%25231e40af%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%2522100%2525%2522%2520stop-color%253D%2522%25230d9488%2522%252F%253E%250A%2520%2520%2520%2520%253C%252FlinearGradient%253E%250A%2520%2520%2520%2520%253CradialGradient%2520id%253D%2522glow%2522%2520cx%253D%252250%2525%2522%2520cy%253D%252250%2525%2522%2520r%253D%252250%2525%2522%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%25220%2525%2522%2520stop-color%253D%2522%2523ffffff%2522%2520stop-opacity%253D%25220.18%2522%252F%253E%250A%2520%2520%2520%2520%2520%2520%253Cstop%2520offset%253D%2522100%2525%2522%2520stop-color%253D%2522%2523ffffff%2522%2520stop-opacity%253D%25220%2522%252F%253E%250A%2520%2520%2520%2520%253C%252FradialGradient%253E%250A%2520%2520%253C%252Fdefs%253E%250A%250A%2520%2520%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522112%2522%2520fill%253D%2522url(%2523bg)%2522%252F%253E%250A%2520%2520%253Crect%2520width%253D%2522512%2522%2520height%253D%2522512%2522%2520rx%253D%2522112%2522%2520fill%253D%2522url(%2523glow)%2522%252F%253E%250A%250A%2520%2520%253Cg%2520fill%253D%2522none%2522%2520stroke%253D%2522%2523ffffff%2522%2520stroke-linecap%253D%2522round%2522%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522176%2522%2520stroke-opacity%253D%25220.08%2522%2520stroke-width%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522144%2522%2520stroke-opacity%253D%25220.14%2522%2520stroke-width%253D%25221.5%2522%252F%253E%250A%2520%2520%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%2522112%2522%2520stroke-opacity%253D%25220.22%2522%2520stroke-width%253D%25221.5%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Cg%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.45%2522%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522252%2522%2520y%253D%252270%2522%2520%2520width%253D%25228%2522%2520height%253D%252218%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522252%2522%2520y%253D%2522424%2522%2520width%253D%25228%2522%2520height%253D%252218%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%252270%2522%2520%2520y%253D%2522252%2522%2520width%253D%252218%2522%2520height%253D%25228%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%2520%2520%253Crect%2520x%253D%2522424%2522%2520y%253D%2522252%2522%2520width%253D%252218%2522%2520height%253D%25228%2522%2520rx%253D%25222%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Cg%2520transform%253D%2522rotate(-24%2520256%2520256)%2522%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520256%252092%2520L%2520292%2520256%2520L%2520256%2520244%2520Z%2522%2520fill%253D%2522%2523fde68a%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520220%2520256%2520L%2520256%252092%2520L%2520256%2520244%2520Z%2522%2520fill%253D%2522%2523fbbf24%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520256%2520420%2520L%2520292%2520256%2520L%2520256%2520268%2520Z%2522%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.85%2522%252F%253E%250A%2520%2520%2520%2520%253Cpath%2520d%253D%2522M%2520220%2520256%2520L%2520256%2520420%2520L%2520256%2520268%2520Z%2522%2520fill%253D%2522%2523ffffff%2522%2520fill-opacity%253D%25220.55%2522%252F%253E%250A%2520%2520%253C%252Fg%253E%250A%250A%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%252220%2522%2520fill%253D%2522%2523ffffff%2522%252F%253E%250A%2520%2520%253Ccircle%2520cx%253D%2522256%2522%2520cy%253D%2522256%2522%2520r%253D%252210%2522%2520fill%253D%2522%25231e3a8a%2522%252F%253E%250A%253C%252Fsvg%253E%250A%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%2210%25%22%20y1%3D%220%25%22%20x2%3D%2290%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e3a8a%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%231e40af%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230d9488%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.18%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22176%22%20stroke-opacity%3D%220.08%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22144%22%20stroke-opacity%3D%220.14%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22112%22%20stroke-opacity%3D%220.22%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.45%22%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%2270%22%20%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%22424%22%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22424%22%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20transform%3D%22rotate(-24%20256%20256)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%2092%20L%20292%20256%20L%20256%20244%20Z%22%20fill%3D%22%23fde68a%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%2092%20L%20256%20244%20Z%22%20fill%3D%22%23fbbf24%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%20420%20L%20292%20256%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.85%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%20420%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.55%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2220%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2210%22%20fill%3D%22%231e3a8a%22%2F%3E%0A%3C%2Fsvg%3E%0A">
+<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%2210%25%22%20y1%3D%220%25%22%20x2%3D%2290%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e3a8a%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%231e40af%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230d9488%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.18%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22176%22%20stroke-opacity%3D%220.08%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22144%22%20stroke-opacity%3D%220.14%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22112%22%20stroke-opacity%3D%220.22%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.45%22%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%2270%22%20%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%22424%22%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22424%22%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20transform%3D%22rotate(-24%20256%20256)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%2092%20L%20292%20256%20L%20256%20244%20Z%22%20fill%3D%22%23fde68a%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%2092%20L%20256%20244%20Z%22%20fill%3D%22%23fbbf24%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%20420%20L%20292%20256%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.85%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%20420%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.55%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2220%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2210%22%20fill%3D%22%231e3a8a%22%2F%3E%0A%3C%2Fsvg%3E%0A">
+<style>
+:root {
+  /* Brand */
+  --primary:       #1e3a8a;   /* Deep navy */
+  --primary-dark:  #172554;   /* Deeper navy */
+  --primary-soft:  #e0e7ff;   /* Indigo-50 */
+  --accent:        #0d9488;   /* Teal (compass needle) */
+  --accent-soft:   #ccfbf1;   /* Teal-100 */
+  --gold:          #f59e0b;   /* North-needle gold */
+  --gold-soft:     #fef3c7;
+
+  /* Status */
+  --danger:        #dc2626;
+  --danger-soft:   #fee2e2;
+  --warning:       #b45309;
+  --warning-soft:  #fef3c7;
+  --success:       #047857;
+  --success-soft:  #d1fae5;
+  --overdue:       #7f1d1d;
+  --tip:           #0e7490;
+  --tip-soft:      #cffafe;
+
+  /* Neutrals */
+  --bg:            #f8fafc;
+  --bg-subtle:     #f1f5f9;
+  --card-bg:       #ffffff;
+  --text:          #0f172a;
+  --text-sub:      #64748b;
+  --text-faint:    #94a3b8;
+  --border:        #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  /* Shape */
+  --radius-lg: 16px;
+  --radius:    12px;
+  --radius-sm: 8px;
+
+  /* Elevation */
+  --shadow:    0 1px 2px rgba(15, 23, 42, 0.04), 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 2px 4px rgba(15, 23, 42, 0.06), 0 10px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 24px 56px rgba(15, 23, 42, 0.18);
+  --ring:      0 0 0 3px rgba(30, 58, 138, 0.25);
+
+  /* Rhythm */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+*:focus { outline: none; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  box-shadow: var(--ring);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* hidden 属性は display:flex 等に上書きされないよう明示 */
+[hidden] { display: none !important; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI Variable", "Segoe UI",
+               "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+  background:
+    radial-gradient(1000px 400px at 10% -10%, rgba(13, 148, 136, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(30, 58, 138, 0.05), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ===== Header ===== */
+.app-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  padding: 14px var(--space-5);
+  padding-top: max(14px, env(safe-area-inset-top));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  z-index: 20;
+}
+.app-title { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+  flex-shrink: 0;
+}
+.app-title .title-text { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
+.app-title h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-feature-settings: "cv11", "ss01";
+}
+.app-title .brand-accent {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+.app-title .subtitle {
+  font-size: 11.5px;
+  color: var(--text-sub);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header-actions { display: flex; gap: 4px; align-items: center; }
+
+/* ===== Buttons ===== */
+.btn {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.18s ease, box-shadow 0.18s ease, opacity 0.15s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+  color: white;
+  box-shadow: 0 1px 2px rgba(30, 58, 138, 0.3), 0 2px 8px rgba(30, 58, 138, 0.15);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.35), 0 6px 14px rgba(30, 58, 138, 0.25);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  padding: 8px 11px;
+  border-radius: var(--radius-sm);
+}
+.btn-ghost:hover { background: rgba(30, 58, 138, 0.07); color: var(--primary); }
+.btn-ghost.sm { padding: 6px 10px; font-size: 12.5px; }
+.btn-ghost.inline { align-self: flex-start; margin-top: 4px; }
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+}
+.btn-danger:hover { background: #b91c1c; }
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  color: var(--text-sub);
+  line-height: 1;
+}
+.icon-btn:hover { background: rgba(0, 0, 0, 0.06); color: var(--text); }
+
+/* ===== Main ===== */
+.app-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+
+/* ===== Summary ===== */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.summary:empty { display: none; }
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.stat-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--border);
+}
+.stat-card.total::before   { background: var(--primary); }
+.stat-card.urgent::before  { background: var(--danger); }
+.stat-card.caution::before { background: var(--warning); }
+.stat-card.ok::before      { background: var(--success); }
+.stat-card.year::before    { background: var(--accent); }
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(30, 58, 138, 0.15);
+}
+.stat-card:active { transform: translateY(0); }
+.stat-card .label {
+  font-size: 11px;
+  color: var(--text-sub);
+  font-weight: 600;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  letter-spacing: 0.03em;
+}
+.stat-card .label small { font-size: 10px; color: var(--text-faint); font-weight: 500; }
+.stat-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 4px;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.stat-card.total   .value { color: var(--primary); }
+.stat-card.urgent  .value { color: var(--danger); }
+.stat-card.caution .value { color: var(--warning); }
+.stat-card.ok      .value { color: var(--success); }
+.stat-card.year    .value { color: var(--accent); }
+
+/* ===== Filter bar ===== */
+.filter-bar {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.filter-group { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1 1 auto;
+  min-width: 140px;
+}
+.filter-item > span:not(.search-icon) {
+  font-size: 11px;
+  color: var(--text-sub);
+  font-weight: 500;
+}
+.filter-item select,
+.filter-item input[type="search"] {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+  width: 100%;
+}
+.filter-item select:focus,
+.filter-item input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-soft);
+}
+.filter-item.search {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  min-width: 200px;
+}
+.filter-item.search .search-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 14px;
+  pointer-events: none;
+  color: var(--text-sub);
+}
+.filter-item.search input { padding-left: 30px; }
+
+/* ===== Staff Grid / Card ===== */
+.staff-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.staff-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid transparent;
+}
+.staff-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--border);
+  transition: background 0.2s ease;
+}
+.staff-card.level-urgent::before  { background: linear-gradient(180deg, var(--danger)  0%, #b91c1c 100%); }
+.staff-card.level-warn::before    { background: linear-gradient(180deg, var(--warning) 0%, #92400e 100%); }
+.staff-card.level-ok::before      { background: linear-gradient(180deg, var(--success) 0%, #065f46 100%); }
+.staff-card.level-overdue::before { background: linear-gradient(180deg, var(--overdue) 0%, #450a0a 100%); }
+.staff-card.level-info::before    { background: var(--border-strong); }
+.staff-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(30, 58, 138, 0.1);
+}
+.staff-card.level-overdue {
+  background: linear-gradient(100deg, #fff1f2 0%, var(--card-bg) 35%);
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.card-head .name-wrap { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.card-head .name {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  word-break: break-word;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-head .name::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+}
+.staff-card.level-urgent  .name::before { background: var(--danger); }
+.staff-card.level-warn    .name::before { background: var(--warning); }
+.staff-card.level-ok      .name::before { background: var(--success); }
+.staff-card.level-overdue .name::before { background: var(--overdue); }
+.staff-card.level-info    .name::before { background: var(--text-faint); }
+.card-head .name-meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.role-badge.role-sabikan    { background: var(--primary-soft); color: var(--primary); }
+.role-badge.role-jihatsukan { background: #fce7f3; color: #be185d; }
+.role-badge.role-both       { background: var(--accent-soft); color: #115e59; }
+.role-badge.role-undecided {
+  background: transparent;
+  color: var(--text-sub);
+  border: 1px dashed var(--border-strong);
+}
+
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-subtle);
+  color: var(--text-sub);
+  border: 1px solid var(--border);
+}
+
+.next-action {
+  background: linear-gradient(180deg, var(--bg-subtle) 0%, #ffffff 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.next-action .type {
+  font-size: 10.5px;
+  color: var(--text-sub);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.next-action .title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sub);
+  letter-spacing: -0.005em;
+}
+.next-action .date {
+  font-size: 22px;
+  font-weight: 700;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+.next-action .remaining {
+  font-size: 13px;
+  color: var(--text-sub);
+  font-feature-settings: "tnum";
+  font-weight: 500;
+}
+.next-action .sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+.next-action.urgent {
+  background: linear-gradient(180deg, #fef2f2 0%, #ffe4e6 100%);
+  border-color: #fecaca;
+}
+.next-action.urgent .remaining { color: var(--danger); font-weight: 700; }
+.next-action.urgent .date { color: #991b1b; }
+.next-action.warn {
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fde68a;
+}
+.next-action.warn .remaining { color: #92400e; font-weight: 600; }
+.next-action.warn .date { color: #78350f; }
+.next-action.overdue {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  color: white;
+  border-color: #7f1d1d;
+}
+.next-action.overdue .title,
+.next-action.overdue .date { color: white; }
+.next-action.overdue .type,
+.next-action.overdue .remaining,
+.next-action.overdue .sub { color: rgba(255, 255, 255, 0.85); }
+.next-action.ok {
+  background: linear-gradient(180deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: #bbf7d0;
+}
+.next-action.ok .date { color: #065f46; }
+.next-action.info { background: var(--bg-subtle); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge.urgent { background: var(--danger); color: white; box-shadow: 0 1px 2px rgba(220, 38, 38, 0.4); }
+.badge.warn   { background: var(--warning); color: white; box-shadow: 0 1px 2px rgba(180, 83, 9, 0.4); }
+.badge.ok     { background: var(--success); color: white; box-shadow: 0 1px 2px rgba(4, 120, 87, 0.3); }
+.badge.overdue {
+  background: white;
+  color: var(--overdue);
+  box-shadow: 0 0 0 1px currentColor inset;
+}
+.next-action.overdue .badge.overdue {
+  background: white;
+  color: var(--overdue);
+}
+.badge.info { background: #94a3b8; color: white; }
+
+.warnings, .tips {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.warn-line {
+  background: var(--warning-soft);
+  color: #92400e;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.tip-line {
+  background: var(--tip-soft);
+  color: #0e7490;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+.details {
+  font-size: 13px;
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+.details .row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.details .row .label { color: var(--text-sub); flex-shrink: 0; }
+.details .row .val {
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+  font-feature-settings: "tnum";
+  word-break: break-word;
+}
+.details .row .val.memo { font-weight: normal; color: var(--text-sub); font-size: 12px; }
+.details .row .val.hist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-end;
+}
+.hist-chip {
+  background: var(--success-soft);
+  color: #166534;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.hist-empty {
+  color: var(--text-faint);
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/* ===== Dialog ===== */
+.staff-dialog {
+  border: none;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 560px;
+  width: calc(100% - 32px);
+  max-height: calc(100vh - 32px);
+  box-shadow: var(--shadow-lg);
+  background: var(--card-bg);
+  color: var(--text);
+  overflow: hidden;
+  margin: auto;
+}
+.staff-dialog::backdrop { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); }
+.staff-dialog form { display: flex; flex-direction: column; max-height: calc(100vh - 32px); }
+.dialog-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  position: sticky;
+  top: 0;
+}
+.dialog-head h2 { margin: 0; font-size: 17px; font-weight: 700; }
+.dialog-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.field-label em {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.field-label em.optional { background: #f3f4f6; color: var(--text-sub); }
+.field-hint {
+  font-size: 11px;
+  color: var(--text-sub);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+
+.staff-dialog input[type="text"],
+.staff-dialog input[type="date"],
+.staff-dialog textarea {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: white;
+  color: var(--text);
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.staff-dialog input:focus, .staff-dialog textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.staff-dialog textarea { resize: vertical; min-height: 48px; }
+
+.radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.radio-group.three { grid-template-columns: repeat(3, 1fr); }
+.radio-group.four  { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 520px) { .radio-group.four { grid-template-columns: repeat(4, 1fr); } }
+.radio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  background: white;
+}
+.radio-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+.radio-card:hover { border-color: var(--border-strong); }
+.radio-card:has(input[type="radio"]:checked) {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(224, 231, 255, 0.5) 100%);
+  box-shadow: 0 0 0 1px var(--primary) inset, 0 2px 8px rgba(30, 58, 138, 0.1);
+}
+.radio-card:has(input[type="radio"]:checked) .radio-title { color: var(--primary); }
+.radio-card .radio-title { font-weight: 700; font-size: 14px; letter-spacing: -0.005em; }
+.radio-card .radio-sub { font-size: 11px; color: var(--text-sub); line-height: 1.35; }
+
+.update-list { display: flex; flex-direction: column; gap: 6px; }
+.update-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  background: #f9fafb;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.update-round {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-sub);
+  background: white;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.update-row input[type="date"] { padding: 8px 10px !important; font-size: 14px !important; }
+
+.dialog-actions {
+  display: flex;
+  gap: 8px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  background: var(--card-bg);
+  position: sticky;
+  bottom: 0;
+}
+.dialog-actions .spacer { flex: 1; }
+
+/* ===== Empty state ===== */
+.empty-state {
+  text-align: center;
+  padding: 64px 20px;
+  color: var(--text-sub);
+}
+.empty-state.soft { padding: 40px 20px; }
+.empty-state .empty-icon { font-size: 56px; margin-bottom: 12px; }
+.empty-state .empty-title { margin: 4px 0; font-size: 16px; color: var(--text); font-weight: 600; }
+.empty-state .empty-sub { margin: 4px 0 20px; font-size: 13px; }
+
+/* ===== More Menu ===== */
+.btn-accent {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+  color: white;
+  box-shadow: 0 1px 2px rgba(13, 148, 136, 0.3), 0 2px 6px rgba(13, 148, 136, 0.15);
+}
+.btn-accent:hover {
+  background: linear-gradient(135deg, #115e59 0%, #0f766e 100%);
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.35), 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.menu-wrap { position: relative; }
+.more-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 240px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: menuFadeIn 0.15s ease;
+  transform-origin: top right;
+}
+@keyframes menuFadeIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.menu-item {
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menu-item:hover { background: var(--primary-soft); color: var(--primary-dark); }
+.menu-item span { font-size: 16px; width: 20px; text-align: center; }
+
+/* ===== Settings dialog path row ===== */
+.path-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.path-row input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 180px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 13px !important;
+  padding: 8px 10px !important;
+  background: #f9fafb !important;
+}
+
+/* ===== Staff dialog wide (for history) ===== */
+.staff-dialog.wide { max-width: 640px; }
+
+/* ===== Backup history list ===== */
+.backup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.backup-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  gap: 8px;
+  background: var(--card-bg);
+}
+.backup-row:hover { background: var(--primary-soft); }
+.backup-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.backup-name { font-family: ui-monospace, Consolas, monospace; font-size: 13px; font-weight: 600; word-break: break-all; }
+.backup-meta { font-size: 11px; color: var(--text-sub); }
+.backup-empty {
+  text-align: center;
+  padding: 28px 12px;
+  color: var(--text-sub);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.btn.sm { padding: 6px 12px; font-size: 13px; }
+
+code {
+  font-family: ui-monospace, Consolas, monospace;
+  background: #f3f4f6;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .more-menu { background: var(--card-bg); border-color: var(--border); }
+  .path-row input[type="text"] { background: #0f172a !important; }
+  .backup-row { background: var(--card-bg); }
+  .backup-row:hover { background: #1e3a8a; }
+  code { background: #334155; }
+}
+
+/* ===== Footer (Electron data path) ===== */
+.app-footer {
+  text-align: center;
+  padding: 16px 8px 24px;
+  font-size: 11px;
+  color: var(--text-faint);
+  font-feature-settings: "tnum";
+  word-break: break-all;
+}
+.app-footer:empty,
+.app-footer span:empty { display: none; }
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(30px);
+  background: #111827;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== Responsive ===== */
+@media (max-width: 440px) {
+  .btn-text { display: none; }
+  .app-title .subtitle { display: none; }
+}
+@media (min-width: 640px) {
+  .app-header { padding: 14px 24px; padding-top: max(14px, env(safe-area-inset-top)); }
+  .app-title h1 { font-size: 19px; }
+  .app-main { padding: 24px; }
+  .summary { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .staff-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+  .filter-bar { flex-direction: row; justify-content: space-between; }
+}
+@media (min-width: 1024px) {
+  .staff-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; }
+}
+@media (min-width: 1440px) {
+  .staff-grid { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
+}
+
+/* Galaxy Z Fold 7 unfolded ≈ 2184×1840 (CSS 700-1100px 帯) */
+@media (min-width: 700px) and (max-width: 1100px) {
+  .staff-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --card-bg: #1e293b;
+    --text: #f1f5f9;
+    --text-sub: #94a3b8;
+    --text-faint: #64748b;
+    --border: #334155;
+    --border-strong: #475569;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --primary-soft: #1e3a8a;
+    --danger-soft: #450a0a;
+    --warning-soft: #451a03;
+    --success-soft: #14532d;
+    --tip-soft: #164e63;
+  }
+  .app-header { background: rgba(11, 18, 32, 0.85); }
+  .next-action, .update-row { background: #0f172a; }
+  .next-action.urgent { background: #450a0a; }
+  .next-action.warn { background: #451a03; }
+  .next-action.info { background: #1e293b; }
+  .staff-dialog input[type="text"],
+  .staff-dialog input[type="date"],
+  .staff-dialog textarea,
+  .filter-item select,
+  .filter-item input,
+  .radio-card { background: #0f172a; }
+  .staff-card.level-overdue { background: linear-gradient(90deg, #450a0a 0%, var(--card-bg) 40%); }
+  .btn-ghost:hover, .icon-btn:hover { background: rgba(255, 255, 255, 0.08); }
+  .details { border-top-color: var(--border); }
+  .field-label em.optional { background: #334155; color: var(--text-sub); }
+  .empty-state .empty-title { color: var(--text); }
+  .toast { background: #334155; }
+  .stage-badge { background: #334155; color: var(--text-sub); }
+  .warn-line { background: #451a03; color: #fbbf24; }
+  .tip-line { background: #164e63; color: #67e8f9; }
+  .hist-chip { background: #14532d; color: #86efac; }
+  .update-round { background: #1e293b; border-color: var(--border); color: var(--text-sub); }
+  .role-badge.role-undecided { background: #1f2937; color: var(--text-sub); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-title">
+    <img class="logo-img" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%2210%25%22%20y1%3D%220%25%22%20x2%3D%2290%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e3a8a%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%231e40af%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230d9488%22%2F%3E%0A%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22glow%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.18%22%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220%22%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%20%20%3C%2Fdefs%3E%0A%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22176%22%20stroke-opacity%3D%220.08%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22144%22%20stroke-opacity%3D%220.14%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22112%22%20stroke-opacity%3D%220.22%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.45%22%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%2270%22%20%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22252%22%20y%3D%22424%22%20width%3D%228%22%20height%3D%2218%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%2270%22%20%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Crect%20x%3D%22424%22%20y%3D%22252%22%20width%3D%2218%22%20height%3D%228%22%20rx%3D%222%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Cg%20transform%3D%22rotate(-24%20256%20256)%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%2092%20L%20292%20256%20L%20256%20244%20Z%22%20fill%3D%22%23fde68a%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%2092%20L%20256%20244%20Z%22%20fill%3D%22%23fbbf24%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20256%20420%20L%20292%20256%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.85%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M%20220%20256%20L%20256%20420%20L%20256%20268%20Z%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.55%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2220%22%20fill%3D%22%23ffffff%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%2210%22%20fill%3D%22%231e3a8a%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt="" aria-hidden="true">
+    <div class="title-text">
+      <h1>Kenshu <span class="brand-accent">Compass</span></h1>
+      <p class="subtitle">サビ管・児発管 研修管理 ／ 研修の、道しるべ。</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button id="excelBtn" class="btn btn-ghost btn-accent" title="Excel 一覧表を出力">
+      <span aria-hidden="true">📗</span>
+      <span class="btn-text">Excel</span>
+    </button>
+    <div class="menu-wrap">
+      <button id="moreBtn" class="btn btn-ghost" title="その他のメニュー" aria-haspopup="true" aria-expanded="false">⋯</button>
+      <div id="moreMenu" class="more-menu" role="menu" hidden>
+        <button type="button" class="menu-item" id="csvBtn"><span>📊</span> CSVで出力</button>
+        <button type="button" class="menu-item" id="exportBtn"><span>💾</span> バックアップを書き出す</button>
+        <button type="button" class="menu-item" id="importBtn"><span>📥</span> データを復元</button>
+        <button type="button" class="menu-item" id="historyBtn"><span>🕐</span> バックアップ履歴から復元</button>
+        <button type="button" class="menu-item electron-only" id="dataFolderBtn" hidden><span>📁</span> データフォルダを開く</button>
+        <button type="button" class="menu-item electron-only" id="settingsBtn" hidden><span>⚙️</span> 設定…</button>
+      </div>
+    </div>
+    <input type="file" id="importFile" accept="application/json" hidden>
+    <button id="addStaffBtn" class="btn btn-primary">
+      <span aria-hidden="true">＋</span>
+      <span class="btn-text">追加</span>
+    </button>
+  </div>
+</header>
+
+<main class="app-main">
+
+  <section class="summary" id="summary" aria-label="サマリー"></section>
+
+  <section class="filter-bar" aria-label="絞り込み">
+    <div class="filter-group">
+      <label class="filter-item">
+        <span>役職</span>
+        <select id="filterRole">
+          <option value="all">すべて</option>
+          <option value="sabikan">サビ管</option>
+          <option value="jihatsukan">児発管</option>
+          <option value="undecided">基礎研修受講前</option>
+        </select>
+      </label>
+      <label class="filter-item">
+        <span>状態</span>
+        <select id="filterStage">
+          <option value="all">すべて</option>
+          <option value="urgent">要対応 (1年以内/超過)</option>
+          <option value="warn">注意 (2年以内)</option>
+          <option value="ok">余裕あり</option>
+          <option value="current-year">今年度が期限</option>
+          <option value="pre-basic">基礎研修前</option>
+          <option value="ojt">OJT期間中</option>
+          <option value="practical-ready">実践研修 受講可能</option>
+          <option value="qualified">有資格</option>
+          <option value="overdue">期限超過</option>
+        </select>
+      </label>
+      <label class="filter-item">
+        <span>並び順</span>
+        <select id="sortBy">
+          <option value="deadline">期限が近い順</option>
+          <option value="name">名前順</option>
+          <option value="role">役職順</option>
+        </select>
+      </label>
+    </div>
+    <div class="filter-group">
+      <label class="filter-item search">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="searchQuery" placeholder="名前・メモで検索">
+      </label>
+      <button type="button" id="clearFiltersBtn" class="btn btn-ghost sm">クリア</button>
+    </div>
+  </section>
+
+  <section id="staffList" class="staff-grid" aria-label="スタッフ一覧"></section>
+
+  <div id="emptyState" class="empty-state" hidden>
+    <div class="empty-icon">📋</div>
+    <p class="empty-title">まだスタッフが登録されていません</p>
+    <p class="empty-sub">右上の「＋ 追加」からスタッフを登録してください</p>
+    <button id="emptyAddBtn" class="btn btn-primary">スタッフを追加</button>
+  </div>
+
+  <div id="filteredEmpty" class="empty-state soft" hidden>
+    <p class="empty-title">条件に一致するスタッフがいません</p>
+    <p class="empty-sub">フィルタをクリアするか、条件を変えてみてください</p>
+  </div>
+
+</main>
+
+<dialog id="staffDialog" class="staff-dialog" aria-labelledby="dialogTitle">
+  <form id="staffForm">
+    <header class="dialog-head">
+      <h2 id="dialogTitle">スタッフを追加</h2>
+      <button type="button" id="closeDialogBtn" class="icon-btn" aria-label="閉じる">✕</button>
+    </header>
+
+    <div class="dialog-body">
+
+      <label class="field">
+        <span class="field-label">お名前 <em>必須</em></span>
+        <input type="text" id="staffName" required maxlength="30" placeholder="例: 田中 太郎" autocomplete="off">
+      </label>
+
+      <fieldset class="field">
+        <legend class="field-label">役職 <em class="optional">任意</em></legend>
+        <div class="radio-group four">
+          <label class="radio-card">
+            <input type="radio" name="role" value="undecided" checked>
+            <span class="radio-title">基礎研修受講前</span>
+            <span class="radio-sub">役職は後日決定</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="role" value="sabikan">
+            <span class="radio-title">サビ管</span>
+            <span class="radio-sub">サービス管理責任者</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="role" value="jihatsukan">
+            <span class="radio-title">児発管</span>
+            <span class="radio-sub">児童発達支援管理責任者</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="role" value="both">
+            <span class="radio-title">両方</span>
+            <span class="radio-sub">サビ管 / 児発管</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span class="field-label">
+          相談支援従事者初任者研修（講義部分）の修了日
+          <em class="optional">任意</em>
+        </span>
+        <input type="date" id="shinninDate">
+        <small class="field-hint">実践研修の受講には、この講義部分の修了が必須です</small>
+      </label>
+
+      <label class="field">
+        <span class="field-label">基礎研修の修了日 <em>推奨</em></span>
+        <input type="date" id="basicDate">
+      </label>
+
+      <fieldset class="field">
+        <legend class="field-label">OJTルート</legend>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="ojtRoute" value="2years" checked>
+            <span class="radio-title">2年ルート</span>
+            <span class="radio-sub">基礎研修修了から2年後に実践研修</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="ojtRoute" value="6months">
+            <span class="radio-title">6ヶ月ルート（特例）</span>
+            <span class="radio-sub">実務要件充足＋個別支援計画業務＋届出</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <label class="field">
+        <span class="field-label">実践研修の修了日 <em class="optional">任意</em></span>
+        <input type="date" id="practicalDate">
+        <small class="field-hint">修了後は正式なサビ管／児発管として配置可能</small>
+      </label>
+
+      <fieldset class="field">
+        <legend class="field-label">更新研修の履歴 <em class="optional">任意</em></legend>
+        <div id="updateList" class="update-list"></div>
+        <button type="button" id="addUpdateBtn" class="btn btn-ghost sm inline">＋ 更新記録を追加</button>
+        <small class="field-hint">複数の更新を時系列で記録できます。最新の修了日をもとに次の期限を計算します。</small>
+      </fieldset>
+
+      <label class="field">
+        <span class="field-label">メモ <em class="optional">任意</em></span>
+        <textarea id="memo" maxlength="300" rows="2" placeholder="補足事項など"></textarea>
+      </label>
+
+    </div>
+
+    <footer class="dialog-actions">
+      <button type="button" id="deleteBtn" class="btn btn-danger" hidden>削除</button>
+      <div class="spacer"></div>
+      <button type="button" id="cancelBtn" class="btn btn-ghost">キャンセル</button>
+      <button type="submit" class="btn btn-primary">保存</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- 設定ダイアログ -->
+<dialog id="settingsDialog" class="staff-dialog" aria-labelledby="settingsTitle">
+  <form id="settingsForm" method="dialog">
+    <header class="dialog-head">
+      <h2 id="settingsTitle">設定</h2>
+      <button type="button" class="icon-btn" data-close-dialog="settingsDialog" aria-label="閉じる">✕</button>
+    </header>
+    <div class="dialog-body">
+
+      <div class="field">
+        <span class="field-label">データファイル（data.json）の保存先</span>
+        <div class="path-row">
+          <input type="text" id="setDataPath" placeholder="（デフォルト: アプリと同じフォルダ）" readonly>
+          <button type="button" id="pickDataFileBtn" class="btn btn-ghost sm">選択</button>
+          <button type="button" id="resetDataPathBtn" class="btn btn-ghost sm">既定へ</button>
+        </div>
+        <small class="field-hint">
+          Google Drive Desktop をインストールし、同期フォルダ内を指定するとスマホから参照できます<br>
+          例: <code>G:\マイドライブ\サビ管\data.json</code>
+        </small>
+        <small class="field-hint" id="effectiveDataPath"></small>
+      </div>
+
+      <div class="field">
+        <span class="field-label">バックアップの保存先フォルダ</span>
+        <div class="path-row">
+          <input type="text" id="setBackupDir" placeholder="（デフォルト: データファイルと同じ場所の backups フォルダ）" readonly>
+          <button type="button" id="pickBackupDirBtn" class="btn btn-ghost sm">選択</button>
+          <button type="button" id="resetBackupDirBtn" class="btn btn-ghost sm">既定へ</button>
+        </div>
+        <small class="field-hint" id="effectiveBackupDir"></small>
+      </div>
+
+      <div class="field">
+        <span class="field-label">設定ファイル</span>
+        <small class="field-hint" id="configPathLabel"></small>
+      </div>
+
+    </div>
+    <footer class="dialog-actions">
+      <div class="spacer"></div>
+      <button type="button" class="btn btn-ghost" data-close-dialog="settingsDialog">閉じる</button>
+      <button type="button" id="saveSettingsBtn" class="btn btn-primary">保存</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- バックアップ履歴ダイアログ -->
+<dialog id="historyDialog" class="staff-dialog wide" aria-labelledby="historyTitle">
+  <div class="dialog-head">
+    <h2 id="historyTitle">バックアップ履歴から復元</h2>
+    <button type="button" class="icon-btn" data-close-dialog="historyDialog" aria-label="閉じる">✕</button>
+  </div>
+  <div class="dialog-body">
+    <p class="field-hint">
+      復元すると現在のデータは上書きされます。念のため直前の状態は自動で新たなバックアップとして残します。
+    </p>
+    <div id="backupList" class="backup-list">
+      <div class="backup-empty">読み込み中…</div>
+    </div>
+  </div>
+  <footer class="dialog-actions">
+    <div class="spacer"></div>
+    <button type="button" class="btn btn-ghost" data-close-dialog="historyDialog">閉じる</button>
+  </footer>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<footer class="app-footer">
+  <span id="dataPathLabel"></span>
+</footer>
+
+<script>
+'use strict';
+
+/* =========================================================
+ *  サビ管／児発管 研修管理 PWA  (schema v2)
+ *
+ *  制度上の研修体系 (厚生労働省):
+ *    ① 基礎研修
+ *       前提: 相談支援業務 or 直接支援業務 通算3〜8年 の実務経験
+ *    ② 相談支援従事者初任者研修（講義部分）
+ *       実践研修受講の前提条件 (基礎研修と並行可)
+ *    ③ OJT期間 (基礎研修修了後)
+ *       - 2年ルート (原則)
+ *       - 6ヶ月ルート (特例): 基礎研修開始時に実務経験要件を充足 +
+ *                             個別支援計画作成業務 + 指定権者への届出
+ *    ④ 実践研修
+ *       修了で正式にサビ管／児発管として配置可能
+ *    ⑤ 更新研修 (5年ごと)
+ *       期限: 実践研修(または直近更新研修)の修了年度の翌年度から
+ *             5年目の年度末 (3/31)
+ *       要件: 受講日前5年間に通算2年以上 サビ管等として従事
+ *
+ *  データモデル:
+ *    {
+ *      schemaVersion: 2,
+ *      staff: [{
+ *        id, name,
+ *        role: 'sabikan' | 'jihatsukan' | 'both',
+ *        shinninDate: 'YYYY-MM-DD' | null, // 相談支援従事者初任者研修(講義)
+ *        basicDate:   'YYYY-MM-DD' | null, // 基礎研修
+ *        ojtRoute:    '2years' | '6months',
+ *        practicalDate: 'YYYY-MM-DD' | null,
+ *        updateHistory: [{ date: 'YYYY-MM-DD' }], // 古い→新しい
+ *        memo: string
+ *      }]
+ *    }
+ * ========================================================= */
+
+const STORAGE_KEY = 'sabikan_training_v1'; // key維持（後方互換）
+const SCHEMA_VERSION = 2;
+const ONE_DAY_MS = 86400000;
+
+const ROLE_LABEL = {
+  sabikan: 'サビ管',
+  jihatsukan: '児発管',
+  both: 'サビ管 / 児発管',
+  undecided: '基礎研修受講前'
+};
+
+const STAGE_LABEL = {
+  'pre-basic': '基礎研修前',
+  'ojt': 'OJT期間中',
+  'practical-ready': '実践研修 受講可能',
+  'qualified': '有資格',
+  'overdue': '資格失効リスク'
+};
+
+/* ============== 日付ユーティリティ ============== */
+
+function parseDate(str) {
+  if (!str) return null;
+  const d = new Date(str + 'T00:00:00');
+  return isNaN(d.getTime()) ? null : d;
+}
+function toISODate(d) {
+  if (!d) return '';
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+function formatJP(d) {
+  if (!d) return '—';
+  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+}
+function formatShort(d) {
+  if (!d) return '—';
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+}
+function addYears(date, years) { const d = new Date(date); d.setFullYear(d.getFullYear() + years); return d; }
+function addMonths(date, months) { const d = new Date(date); d.setMonth(d.getMonth() + months); return d; }
+function startOfToday() { const d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+
+// 日本の年度 (4/1 〜 翌3/31)
+function getFiscalYear(date) {
+  const m = date.getMonth();
+  return m >= 3 ? date.getFullYear() : date.getFullYear() - 1;
+}
+function getFiscalYearEnd(date) {
+  const fy = getFiscalYear(date);
+  return new Date(fy + 1, 2, 31);
+}
+
+/* ============== 計算ロジック（コア） ============== */
+
+/** 実践研修の受講可能日 = 基礎研修修了日 + (2年 or 6ヶ月) */
+function getPracticalEligibleDate(basicDate, ojtRoute) {
+  if (!basicDate) return null;
+  if (ojtRoute === '6months') return addMonths(basicDate, 6);
+  return addYears(basicDate, 2); // デフォルト
+}
+
+/**
+ * 更新研修の受講期限
+ * 公式: 「実践研修(直近更新研修)の修了年度の翌年度から5年目の年度末」
+ * 例: 基準日=2025-11-20 (2025年度修了) → 翌年度=2026年度 → 5年目=2030年度 → 期限=2031/3/31
+ * (実装は基準日+5年が属する年度末と等価)
+ */
+function getUpdateDeadline(baseDate) {
+  if (!baseDate) return null;
+  return getFiscalYearEnd(addYears(baseDate, 5));
+}
+
+/** 更新履歴から最新の更新日を取得 */
+function getLatestUpdateDate(staff) {
+  const hist = staff.updateHistory || [];
+  const dates = hist.map(u => parseDate(u && u.date)).filter(Boolean);
+  if (dates.length === 0) return null;
+  return new Date(Math.max.apply(null, dates.map(d => d.getTime())));
+}
+
+/** スタッフの次のアクションと段階を判定 */
+function computeStatus(staff) {
+  const today = startOfToday();
+  const basic = parseDate(staff.basicDate);
+  const practical = parseDate(staff.practicalDate);
+  const shinnin = parseDate(staff.shinninDate);
+  const latestUpdate = getLatestUpdateDate(staff);
+  const updateCount = (staff.updateHistory || []).length;
+
+  let stage, nextKind, nextTitle, nextSub, nextDate, isHardDeadline = false;
+  const warnings = [];
+  const tips = [];
+
+  if (!basic) {
+    // 基礎研修すら未受講
+    stage = 'pre-basic';
+    nextKind = 'basic';
+    nextTitle = '基礎研修の受講';
+    nextSub = '受講には相談支援/直接支援業務 通算3〜8年の実務経験が必要';
+    nextDate = null;
+  } else if (!practical) {
+    // 基礎研修済、実践研修未受講 → OJT期間中 or 実践研修受講可能
+    const eligibleDate = getPracticalEligibleDate(basic, staff.ojtRoute);
+    const routeLabel = staff.ojtRoute === '6months' ? '6ヶ月' : '2年';
+
+    if (eligibleDate && today < eligibleDate) {
+      stage = 'ojt';
+      nextKind = 'practical-eligible';
+      nextTitle = '実践研修 受講可能日';
+      nextSub = `OJT期間中（${routeLabel}ルート）・みなし配置可`;
+    } else {
+      stage = 'practical-ready';
+      nextKind = 'practical';
+      nextTitle = '実践研修の受講';
+      nextSub = '受講可能期間・有資格化へ';
+    }
+    nextDate = eligibleDate;
+
+    if (!shinnin) {
+      warnings.push('実践研修受講には「相談支援従事者初任者研修（講義部分）」の修了も必須');
+    }
+    if (staff.ojtRoute === '6months') {
+      tips.push('6ヶ月特例: 基礎研修開始時に実務要件充足＋個別支援計画業務従事＋指定権者への届出が前提');
+    }
+  } else {
+    // 実践研修修了 → 有資格、次は更新研修
+    const baseForUpdate = latestUpdate || practical;
+    const deadline = getUpdateDeadline(baseForUpdate);
+    const round = updateCount + 1;
+
+    nextKind = 'update';
+    nextTitle = `${round === 1 ? '初回' : round + '回目'}の更新研修 受講期限`;
+    nextSub = latestUpdate
+      ? `直近更新 ${formatShort(latestUpdate)} の翌年度から5年目の年度末`
+      : '実践研修修了年度の翌年度から5年目の年度末';
+    nextDate = deadline;
+    isHardDeadline = true;
+
+    // ステージ
+    const days = deadline ? Math.round((deadline - today) / ONE_DAY_MS) : null;
+    if (days !== null && days < 0) stage = 'overdue';
+    else stage = 'qualified';
+
+    // 更新研修受講要件の注意
+    if (round >= 2) {
+      tips.push('更新研修受講には、受講日前5年間に通算2年以上サビ管等として従事している必要');
+    }
+  }
+
+  const daysRemaining = nextDate
+    ? Math.round((nextDate - today) / ONE_DAY_MS)
+    : null;
+
+  // 警告レベル判定
+  let level;
+  if (nextDate === null) {
+    level = 'info';
+  } else if (isHardDeadline) {
+    if (daysRemaining < 0) level = 'overdue';
+    else if (daysRemaining <= 180) level = 'urgent';
+    else if (daysRemaining <= 365) level = 'urgent';
+    else if (daysRemaining <= 730) level = 'warn';
+    else level = 'ok';
+  } else {
+    // 実践研修 受講可能日 (期限ではない)
+    if (daysRemaining < -365) level = 'urgent';
+    else if (daysRemaining < 0) level = 'warn';
+    else if (daysRemaining <= 180) level = 'warn';
+    else level = 'ok';
+  }
+
+  return {
+    stage, nextKind, nextTitle, nextSub, nextDate, daysRemaining,
+    level, isHardDeadline, warnings, tips,
+    basic, practical, latestUpdate, shinnin, updateCount,
+    round: updateCount + 1
+  };
+}
+
+/* ============== ストレージ / マイグレーション ============== */
+
+function migrate(raw) {
+  if (!raw) return { schemaVersion: SCHEMA_VERSION, staff: [] };
+  let data = { ...raw };
+  const version = data.schemaVersion || 1;
+  let staff = Array.isArray(data.staff) ? data.staff : [];
+
+  if (version < 2) {
+    staff = staff.map(s => {
+      const migrated = {
+        id: s.id,
+        name: s.name,
+        role: s.role || 'sabikan',
+        shinninDate: s.shinninDate || null,
+        basicDate: s.basicDate || null,
+        ojtRoute: s.ojtRoute === '6months' ? '6months' : '2years',
+        practicalDate: s.practicalDate || null,
+        updateHistory: Array.isArray(s.updateHistory) ? s.updateHistory
+          : (s.latestUpdateDate ? [{ date: s.latestUpdateDate }] : []),
+        memo: s.memo || ''
+      };
+      return migrated;
+    });
+  }
+
+  return { schemaVersion: SCHEMA_VERSION, staff };
+}
+
+/* ストレージ抽象化: Electron環境ではファイル保存、ブラウザでは localStorage */
+const IS_ELECTRON = typeof window !== 'undefined' && !!window.electronAPI;
+
+async function loadData() {
+  try {
+    if (IS_ELECTRON) {
+      const raw = await window.electronAPI.loadData();
+      return migrate(raw || null);
+    }
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return migrate(raw ? JSON.parse(raw) : null);
+  } catch (e) {
+    console.warn('load failed', e);
+    return { schemaVersion: SCHEMA_VERSION, staff: [] };
+  }
+}
+async function saveData(data) {
+  const payload = { schemaVersion: SCHEMA_VERSION, staff: data.staff };
+  if (IS_ELECTRON) {
+    const result = await window.electronAPI.saveData(payload);
+    if (result && result.ok === false) {
+      alert('保存に失敗しました: ' + (result.error || '不明なエラー'));
+    }
+    return;
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+}
+function uid() {
+  return 'id-' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+}
+
+/* ============== アプリ状態 ============== */
+
+const state = {
+  staff: [],
+  editingId: null,
+  filter: { role: 'all', stage: 'all', query: '' },
+  sort: 'deadline'
+};
+
+/* ============== フィルタ・ソート ============== */
+
+function applyFilterSort() {
+  const q = state.filter.query.trim().toLowerCase();
+  let list = state.staff.map(s => ({ s, st: computeStatus(s) }));
+
+  if (state.filter.role !== 'all') {
+    list = list.filter(({ s }) => {
+      const r = s.role || 'undecided';
+      if (state.filter.role === 'sabikan') return r === 'sabikan' || r === 'both';
+      if (state.filter.role === 'jihatsukan') return r === 'jihatsukan' || r === 'both';
+      if (state.filter.role === 'undecided') return r === 'undecided';
+      return true;
+    });
+  }
+  if (state.filter.stage !== 'all') {
+    list = list.filter(({ st }) => {
+      // レベル系フィルタ
+      if (state.filter.stage === 'urgent') return st.level === 'urgent' || st.level === 'overdue';
+      if (state.filter.stage === 'warn')   return st.level === 'warn';
+      if (state.filter.stage === 'ok')     return st.level === 'ok' || st.level === 'info';
+      if (state.filter.stage === 'current-year') {
+        if (!st.nextDate) return false;
+        const fyEnd = getFiscalYearEnd(startOfToday());
+        return st.nextDate <= fyEnd;
+      }
+      // ステージ系フィルタ
+      return st.stage === state.filter.stage;
+    });
+  }
+  if (q) {
+    list = list.filter(({ s }) => (s.name || '').toLowerCase().includes(q) ||
+                                    (s.memo || '').toLowerCase().includes(q));
+  }
+
+  if (state.sort === 'deadline') {
+    list.sort((a, b) => {
+      const ad = a.st.daysRemaining;
+      const bd = b.st.daysRemaining;
+      if (ad === null && bd === null) return a.s.name.localeCompare(b.s.name, 'ja');
+      if (ad === null) return 1;
+      if (bd === null) return -1;
+      return ad - bd;
+    });
+  } else if (state.sort === 'name') {
+    list.sort((a, b) => a.s.name.localeCompare(b.s.name, 'ja'));
+  } else if (state.sort === 'role') {
+    list.sort((a, b) => (a.s.role || '').localeCompare(b.s.role || '') ||
+                         a.s.name.localeCompare(b.s.name, 'ja'));
+  }
+  return list;
+}
+
+/* ============== 描画 ============== */
+
+function renderSummary(all, filtered) {
+  const summary = document.getElementById('summary');
+  if (all.length === 0) { summary.innerHTML = ''; return; }
+  const urgent = all.filter(x => x.st.level === 'urgent' || x.st.level === 'overdue').length;
+  const warn = all.filter(x => x.st.level === 'warn').length;
+  const ok = all.filter(x => x.st.level === 'ok' || x.st.level === 'info').length;
+  const thisYear = all.filter(x => {
+    if (!x.st.nextDate) return false;
+    const fyEnd = getFiscalYearEnd(startOfToday());
+    return x.st.nextDate <= fyEnd;
+  }).length;
+
+  summary.innerHTML = `
+    <button class="stat-card total" data-filter-stage="all">
+      <div class="label">全スタッフ</div>
+      <div class="value">${all.length}</div>
+    </button>
+    <button class="stat-card urgent" data-filter-stage="urgent">
+      <div class="label">要対応 <small>(1年以内 / 超過)</small></div>
+      <div class="value">${urgent}</div>
+    </button>
+    <button class="stat-card caution" data-filter-stage="warn">
+      <div class="label">注意 <small>(2年以内)</small></div>
+      <div class="value">${warn}</div>
+    </button>
+    <button class="stat-card ok" data-filter-stage="ok">
+      <div class="label">余裕あり</div>
+      <div class="value">${ok}</div>
+    </button>
+    <button class="stat-card year" data-filter-stage="current-year">
+      <div class="label">今年度に対応</div>
+      <div class="value">${thisYear}</div>
+    </button>
+  `;
+  summary.querySelectorAll('[data-filter-stage]').forEach(el => {
+    el.addEventListener('click', () => {
+      state.filter.stage = el.dataset.filterStage;
+      document.getElementById('filterStage').value = state.filter.stage;
+      renderList();
+    });
+  });
+}
+
+function renderList() {
+  const all = state.staff.map(s => ({ s, st: computeStatus(s) }));
+  const list = applyFilterSort();
+  const container = document.getElementById('staffList');
+  const empty = document.getElementById('emptyState');
+  const filteredEmpty = document.getElementById('filteredEmpty');
+
+  renderSummary(all, list);
+
+  if (state.staff.length === 0) {
+    container.innerHTML = '';
+    empty.hidden = false;
+    filteredEmpty.hidden = true;
+    return;
+  }
+  empty.hidden = true;
+
+  if (list.length === 0) {
+    container.innerHTML = '';
+    filteredEmpty.hidden = false;
+    return;
+  }
+  filteredEmpty.hidden = true;
+
+  container.innerHTML = list.map(({ s, st }) => renderCard(s, st)).join('');
+  container.querySelectorAll('[data-edit]').forEach(el => {
+    el.addEventListener('click', () => openEditDialog(el.dataset.edit));
+  });
+}
+
+function badgeText(level) {
+  return ({
+    urgent: '要対応',
+    warn: '注意',
+    ok: '余裕あり',
+    overdue: '期限超過',
+    info: '—'
+  })[level] || '';
+}
+function remainingText(st) {
+  if (st.daysRemaining === null) return '日付未設定';
+  const n = Math.abs(st.daysRemaining);
+  if (st.daysRemaining < 0) {
+    return st.isHardDeadline ? `期限を ${n} 日 超過` : `${n} 日前から受講可能`;
+  }
+  if (st.daysRemaining === 0) return '本日';
+  if (n < 365) return `あと ${n} 日`;
+  const years = Math.floor(n / 365);
+  const days = n - years * 365;
+  return `あと ${years} 年 ${days} 日`;
+}
+
+function renderCard(s, st) {
+  const ojtLabel = s.ojtRoute === '6months' ? '6ヶ月' : '2年';
+  const roleKey = s.role || 'undecided';
+  const role = ROLE_LABEL[roleKey] || '基礎研修受講前';
+  const stageLabel = STAGE_LABEL[st.stage] || '';
+
+  const warnHtml = st.warnings.length
+    ? `<div class="warnings">${st.warnings.map(w => `<div class="warn-line">⚠️ ${escapeHTML(w)}</div>`).join('')}</div>`
+    : '';
+  const tipHtml = st.tips.length
+    ? `<div class="tips">${st.tips.map(t => `<div class="tip-line">💡 ${escapeHTML(t)}</div>`).join('')}</div>`
+    : '';
+
+  const hist = (s.updateHistory || []).slice().sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  const histLines = hist.length
+    ? hist.map((u, i) => `<span class="hist-chip">${i + 1}回目 ${formatShort(parseDate(u.date))}</span>`).join('')
+    : '<span class="hist-empty">未受講</span>';
+
+  return `
+    <article class="staff-card level-${st.level}" data-id="${s.id}">
+      <header class="card-head">
+        <div class="name-wrap">
+          <h2 class="name">${escapeHTML(s.name)}</h2>
+          <div class="name-meta">
+            <span class="role-badge role-${roleKey}">${role}</span>
+            <span class="stage-badge">${stageLabel}</span>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" data-edit="${s.id}" aria-label="編集" title="編集">✏️</button>
+      </header>
+
+      <div class="next-action ${st.level}">
+        <div class="type">
+          <span>🎯 次のアクション</span>
+          <span class="badge ${st.level}">${badgeText(st.level)}</span>
+        </div>
+        <div class="title">${escapeHTML(st.nextTitle)}</div>
+        <div class="date">${formatJP(st.nextDate)}</div>
+        <div class="remaining">${remainingText(st)}</div>
+        ${st.nextSub ? `<div class="sub">${escapeHTML(st.nextSub)}</div>` : ''}
+      </div>
+
+      ${warnHtml}${tipHtml}
+
+      <div class="details">
+        <div class="row">
+          <span class="label">相談支援研修(講義)</span>
+          <span class="val">${st.shinnin ? formatShort(st.shinnin) : '未修了'}</span>
+        </div>
+        <div class="row">
+          <span class="label">基礎研修</span>
+          <span class="val">${formatShort(st.basic)} <small>(${ojtLabel}ルート)</small></span>
+        </div>
+        <div class="row">
+          <span class="label">実践研修</span>
+          <span class="val">${st.practical ? formatShort(st.practical) : '未受講'}</span>
+        </div>
+        <div class="row">
+          <span class="label">更新研修履歴</span>
+          <span class="val hist">${histLines}</span>
+        </div>
+        ${s.memo ? `<div class="row"><span class="label">メモ</span><span class="val memo">${escapeHTML(s.memo)}</span></div>` : ''}
+      </div>
+    </article>
+  `;
+}
+
+function escapeHTML(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
+/* ============== ダイアログ ============== */
+
+const dialog = document.getElementById('staffDialog');
+const form = document.getElementById('staffForm');
+const dialogTitle = document.getElementById('dialogTitle');
+const deleteBtn = document.getElementById('deleteBtn');
+const updateListEl = document.getElementById('updateList');
+
+function renderUpdateListInForm(history) {
+  updateListEl.innerHTML = '';
+  history.forEach((u, i) => addUpdateRow(u.date, i));
+  if (history.length === 0) addUpdateRow('', 0);
+}
+
+function addUpdateRow(value, index) {
+  const row = document.createElement('div');
+  row.className = 'update-row';
+  row.innerHTML = `
+    <span class="update-round">${(updateListEl.children.length + 1)}回目</span>
+    <input type="date" class="update-date" value="${value || ''}">
+    <button type="button" class="icon-btn update-remove" aria-label="削除">🗑</button>
+  `;
+  row.querySelector('.update-remove').addEventListener('click', () => {
+    row.remove();
+    renumberUpdateRows();
+  });
+  updateListEl.appendChild(row);
+}
+function renumberUpdateRows() {
+  Array.from(updateListEl.children).forEach((row, i) => {
+    const lab = row.querySelector('.update-round');
+    if (lab) lab.textContent = `${i + 1}回目`;
+  });
+}
+function collectUpdateHistory() {
+  const rows = Array.from(updateListEl.querySelectorAll('.update-date'));
+  return rows
+    .map(i => i.value)
+    .filter(Boolean)
+    .sort()
+    .map(date => ({ date }));
+}
+
+document.getElementById('addUpdateBtn').addEventListener('click', () => {
+  addUpdateRow('', updateListEl.children.length);
+});
+
+function openAddDialog() {
+  state.editingId = null;
+  dialogTitle.textContent = 'スタッフを追加';
+  form.reset();
+  document.querySelector('input[name="role"][value="undecided"]').checked = true;
+  document.querySelector('input[name="ojtRoute"][value="2years"]').checked = true;
+  renderUpdateListInForm([]);
+  deleteBtn.hidden = true;
+  if (typeof dialog.showModal === 'function') dialog.showModal();
+  else dialog.setAttribute('open', '');
+  setTimeout(() => document.getElementById('staffName').focus(), 50);
+}
+
+function openEditDialog(id) {
+  const s = state.staff.find(x => x.id === id);
+  if (!s) return;
+  state.editingId = id;
+  dialogTitle.textContent = 'スタッフを編集';
+  document.getElementById('staffName').value = s.name || '';
+  const roleEl = document.querySelector(`input[name="role"][value="${s.role || 'undecided'}"]`);
+  if (roleEl) roleEl.checked = true;
+  document.getElementById('shinninDate').value = s.shinninDate || '';
+  document.getElementById('basicDate').value = s.basicDate || '';
+  const routeEl = document.querySelector(`input[name="ojtRoute"][value="${s.ojtRoute || '2years'}"]`);
+  if (routeEl) routeEl.checked = true;
+  document.getElementById('practicalDate').value = s.practicalDate || '';
+  renderUpdateListInForm(s.updateHistory || []);
+  document.getElementById('memo').value = s.memo || '';
+  deleteBtn.hidden = false;
+  if (typeof dialog.showModal === 'function') dialog.showModal();
+  else dialog.setAttribute('open', '');
+}
+
+function closeDialog() {
+  if (typeof dialog.close === 'function') dialog.close();
+  else dialog.removeAttribute('open');
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('staffName').value.trim(),
+    role: document.querySelector('input[name="role"]:checked').value,
+    shinninDate: document.getElementById('shinninDate').value || null,
+    basicDate: document.getElementById('basicDate').value || null,
+    ojtRoute: document.querySelector('input[name="ojtRoute"]:checked').value,
+    practicalDate: document.getElementById('practicalDate').value || null,
+    updateHistory: collectUpdateHistory(),
+    memo: document.getElementById('memo').value.trim()
+  };
+  if (!data.name) return;
+
+  if (state.editingId) {
+    const idx = state.staff.findIndex(x => x.id === state.editingId);
+    if (idx >= 0) {
+      state.staff[idx] = { ...state.staff[idx], ...data };
+      showToast('保存しました');
+    }
+  } else {
+    state.staff.push({ id: uid(), ...data });
+    showToast('スタッフを追加しました');
+  }
+  await saveData({ staff: state.staff });
+  closeDialog();
+  renderList();
+});
+
+document.getElementById('cancelBtn').addEventListener('click', closeDialog);
+document.getElementById('closeDialogBtn').addEventListener('click', closeDialog);
+
+deleteBtn.addEventListener('click', async () => {
+  if (!state.editingId) return;
+  const s = state.staff.find(x => x.id === state.editingId);
+  if (!confirm(`「${s ? s.name : ''}」を削除しますか？\nこの操作は取り消せません。`)) return;
+  state.staff = state.staff.filter(x => x.id !== state.editingId);
+  await saveData({ staff: state.staff });
+  closeDialog();
+  renderList();
+  showToast('削除しました');
+});
+
+document.getElementById('addStaffBtn').addEventListener('click', openAddDialog);
+document.getElementById('emptyAddBtn').addEventListener('click', openAddDialog);
+
+dialog.addEventListener('click', (e) => {
+  if (e.target === dialog) closeDialog();
+});
+
+// 共通: 背景クリックでダイアログを閉じる
+[document.getElementById('settingsDialog'), document.getElementById('historyDialog')]
+  .filter(Boolean)
+  .forEach(d => {
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  });
+
+/* ============== フィルタバー ============== */
+
+document.getElementById('filterRole').addEventListener('change', (e) => {
+  state.filter.role = e.target.value; renderList();
+});
+document.getElementById('filterStage').addEventListener('change', (e) => {
+  state.filter.stage = e.target.value; renderList();
+});
+document.getElementById('sortBy').addEventListener('change', (e) => {
+  state.sort = e.target.value; renderList();
+});
+document.getElementById('searchQuery').addEventListener('input', (e) => {
+  state.filter.query = e.target.value; renderList();
+});
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  state.filter = { role: 'all', stage: 'all', query: '' };
+  state.sort = 'deadline';
+  document.getElementById('filterRole').value = 'all';
+  document.getElementById('filterStage').value = 'all';
+  document.getElementById('sortBy').value = 'deadline';
+  document.getElementById('searchQuery').value = '';
+  renderList();
+});
+
+/* ============== エクスポート / インポート / CSV ============== */
+
+document.getElementById('exportBtn').addEventListener('click', async () => {
+  const json = JSON.stringify({
+    schemaVersion: SCHEMA_VERSION,
+    exportedAt: new Date().toISOString(),
+    staff: state.staff
+  }, null, 2);
+  if (IS_ELECTRON) {
+    const result = await window.electronAPI.saveBackupFile(json);
+    if (result && result.ok) showToast('バックアップを保存しました');
+    return;
+  }
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `sabikan-backup-${toISODate(new Date())}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('バックアップを保存しました');
+});
+
+async function applyImportText(text) {
+  try {
+    const data = migrate(JSON.parse(text));
+    if (!confirm(`${data.staff.length} 件のデータで上書きします。よろしいですか？`)) return;
+    state.staff = data.staff.map(s => ({ id: s.id || uid(), ...s }));
+    await saveData({ staff: state.staff });
+    renderList();
+    showToast('復元しました');
+  } catch (err) {
+    alert('ファイルを読み込めませんでした: ' + err.message);
+  }
+}
+
+const importFileEl = document.getElementById('importFile');
+document.getElementById('importBtn').addEventListener('click', async () => {
+  if (IS_ELECTRON) {
+    const text = await window.electronAPI.pickImportFile();
+    if (text) await applyImportText(text);
+    return;
+  }
+  importFileEl.click();
+});
+importFileEl.addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => applyImportText(String(reader.result));
+  reader.readAsText(file);
+  importFileEl.value = '';
+});
+
+document.getElementById('csvBtn').addEventListener('click', () => {
+  const rows = [[
+    '名前', '役職', '相談支援初任者(講義)', '基礎研修', 'OJTルート',
+    '実践研修', '更新研修回数', '直近更新', '次アクション', '次期限', '残日数', '状態', 'メモ'
+  ]];
+  state.staff.forEach(s => {
+    const st = computeStatus(s);
+    rows.push([
+      s.name,
+      ROLE_LABEL[s.role || 'undecided'] || '基礎研修受講前',
+      s.shinninDate || '',
+      s.basicDate || '',
+      s.ojtRoute === '6months' ? '6ヶ月' : '2年',
+      s.practicalDate || '',
+      (s.updateHistory || []).length,
+      st.latestUpdate ? toISODate(st.latestUpdate) : '',
+      st.nextTitle,
+      st.nextDate ? toISODate(st.nextDate) : '',
+      st.daysRemaining == null ? '' : st.daysRemaining,
+      STAGE_LABEL[st.stage] || '',
+      (s.memo || '').replace(/\n/g, ' ')
+    ]);
+  });
+  const csv = '\uFEFF' + rows.map(r =>
+    r.map(c => {
+      const v = String(c ?? '');
+      return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+    }).join(',')
+  ).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `sabikan-${toISODate(new Date())}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSVを出力しました');
+});
+
+/* ============== トースト ============== */
+
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+}
+
+/* ============== Service Worker ============== */
+
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+/* ============== More メニュー ============== */
+
+const moreBtn = document.getElementById('moreBtn');
+const moreMenu = document.getElementById('moreMenu');
+function toggleMoreMenu(open) {
+  const next = typeof open === 'boolean' ? open : moreMenu.hidden;
+  moreMenu.hidden = !next;
+  moreBtn.setAttribute('aria-expanded', String(next));
+}
+moreBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMoreMenu(); });
+document.addEventListener('click', (e) => {
+  if (!moreMenu.hidden && !moreMenu.contains(e.target) && e.target !== moreBtn) toggleMoreMenu(false);
+});
+moreMenu.addEventListener('click', () => toggleMoreMenu(false));
+
+/* ============== Electron専用ボタンの有効化 ============== */
+
+const dataFolderBtn = document.getElementById('dataFolderBtn');
+const settingsBtn = document.getElementById('settingsBtn');
+if (IS_ELECTRON) {
+  if (dataFolderBtn) {
+    dataFolderBtn.hidden = false;
+    dataFolderBtn.addEventListener('click', () => window.electronAPI.revealDataFolder());
+  }
+  if (settingsBtn) {
+    settingsBtn.hidden = false;
+    settingsBtn.addEventListener('click', openSettingsDialog);
+  }
+}
+
+/* ============== 設定ダイアログ ============== */
+
+const settingsDialog = document.getElementById('settingsDialog');
+let pendingSettings = {};
+
+async function openSettingsDialog() {
+  if (!IS_ELECTRON) return;
+  const s = await window.electronAPI.getSettings();
+  pendingSettings = { dataFilePath: s.dataFilePath, backupDir: s.backupDir };
+  document.getElementById('setDataPath').value = s.dataFilePath || '';
+  document.getElementById('setBackupDir').value = s.backupDir || '';
+  document.getElementById('effectiveDataPath').textContent = `現在の実効パス: ${s.effectiveDataFilePath}`;
+  document.getElementById('effectiveBackupDir').textContent = `現在の実効フォルダ: ${s.effectiveBackupDir}`;
+  document.getElementById('configPathLabel').textContent = s.configPath;
+  if (typeof settingsDialog.showModal === 'function') settingsDialog.showModal();
+  else settingsDialog.setAttribute('open', '');
+}
+
+document.getElementById('pickDataFileBtn').addEventListener('click', async () => {
+  const p = await window.electronAPI.pickFilePath({
+    title: 'data.json の保存先を指定',
+    defaultPath: 'data.json',
+    filters: [{ name: 'JSON', extensions: ['json'] }]
+  });
+  if (p) {
+    pendingSettings.dataFilePath = p;
+    document.getElementById('setDataPath').value = p;
+  }
+});
+document.getElementById('resetDataPathBtn').addEventListener('click', () => {
+  pendingSettings.dataFilePath = null;
+  document.getElementById('setDataPath').value = '';
+});
+document.getElementById('pickBackupDirBtn').addEventListener('click', async () => {
+  const p = await window.electronAPI.pickFolder('バックアップ保存先フォルダ');
+  if (p) {
+    pendingSettings.backupDir = p;
+    document.getElementById('setBackupDir').value = p;
+  }
+});
+document.getElementById('resetBackupDirBtn').addEventListener('click', () => {
+  pendingSettings.backupDir = null;
+  document.getElementById('setBackupDir').value = '';
+});
+document.getElementById('saveSettingsBtn').addEventListener('click', async () => {
+  await window.electronAPI.setSettings(pendingSettings);
+  // 設定変更後はデータを再読み込み（保存先が変わった場合に備え）
+  const loaded = await loadData();
+  state.staff = loaded.staff;
+  renderList();
+  await updateDataPathLabel();
+  showToast('設定を保存しました');
+  settingsDialog.close();
+});
+
+/* ============== バックアップ履歴ダイアログ ============== */
+
+const historyDialog = document.getElementById('historyDialog');
+const historyBtn = document.getElementById('historyBtn');
+if (historyBtn) historyBtn.addEventListener('click', openHistoryDialog);
+
+async function openHistoryDialog() {
+  const listEl = document.getElementById('backupList');
+  listEl.innerHTML = '<div class="backup-empty">読み込み中…</div>';
+  if (typeof historyDialog.showModal === 'function') historyDialog.showModal();
+  else historyDialog.setAttribute('open', '');
+
+  let backups = [];
+  if (IS_ELECTRON) {
+    backups = await window.electronAPI.listBackups();
+  } else {
+    listEl.innerHTML = '<div class="backup-empty">ブラウザ版ではバックアップ履歴は利用できません。<br>右上メニューから「復元」→JSONファイル選択で復元してください。</div>';
+    return;
+  }
+  if (!backups.length) {
+    listEl.innerHTML = '<div class="backup-empty">バックアップがまだありません。<br>スタッフの登録・編集をすると自動で日次バックアップが作成されます。</div>';
+    return;
+  }
+  listEl.innerHTML = backups.map(b => {
+    const d = new Date(b.mtime);
+    const whenJP = `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const sizeKB = (b.size / 1024).toFixed(1);
+    return `
+      <div class="backup-row">
+        <div class="backup-main">
+          <div class="backup-name">${escapeHTML(b.name)}</div>
+          <div class="backup-meta">${whenJP}・${sizeKB} KB</div>
+        </div>
+        <button type="button" class="btn btn-primary sm" data-restore="${encodeURIComponent(b.path)}">この時点に復元</button>
+      </div>
+    `;
+  }).join('');
+  listEl.querySelectorAll('[data-restore]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const path = decodeURIComponent(btn.dataset.restore);
+      const text = await window.electronAPI.readBackup(path);
+      if (!text) { alert('バックアップの読み込みに失敗しました'); return; }
+      if (!confirm('この時点のデータで現在の状態を上書きします。よろしいですか？\n（直前の現在データは新たなバックアップとして残ります）')) return;
+      // 現在データを保存（自動的にバックアップにも残る）
+      await saveData({ staff: state.staff });
+      await applyImportText(text);
+      historyDialog.close();
+    });
+  });
+}
+
+document.querySelectorAll('[data-close-dialog]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.closeDialog;
+    const d = document.getElementById(id);
+    if (d && typeof d.close === 'function') d.close();
+    else if (d) d.removeAttribute('open');
+  });
+});
+
+/* ============== Excel 出力 ============== */
+
+document.getElementById('excelBtn').addEventListener('click', async () => {
+  if (!IS_ELECTRON) {
+    alert('Excel出力はデスクトップ版のみで利用可能です。\nブラウザ版は「CSVで出力」をご利用ください。');
+    return;
+  }
+  const payload = buildExcelPayload();
+  const result = await window.electronAPI.exportExcel(payload);
+  if (result && result.ok) {
+    showToast('Excelファイルを保存しました');
+  }
+});
+
+function buildExcelPayload() {
+  const rows = [];
+  const events = [];
+  const nextActions = [];
+
+  state.staff.forEach(s => {
+    const st = computeStatus(s);
+    const roleLabel = ROLE_LABEL[s.role || 'undecided'] || '基礎研修受講前';
+    const ojtLabel = s.ojtRoute === '6months' ? '6ヶ月' : '2年';
+    const stageLabel = STAGE_LABEL[st.stage] || '';
+    const statusLabel = ({
+      urgent: '要対応', warn: '注意', ok: '余裕あり',
+      overdue: '期限超過', info: '—'
+    })[st.level] || '';
+
+    rows.push({
+      name: s.name,
+      roleLabel,
+      stageLabel,
+      shinninDate: s.shinninDate || null,
+      basicDate: s.basicDate || null,
+      ojtLabel,
+      practicalDate: s.practicalDate || null,
+      updateCount: (s.updateHistory || []).length,
+      latestUpdateDate: st.latestUpdate ? toISODate(st.latestUpdate) : null,
+      nextTitle: st.nextTitle,
+      nextDateISO: st.nextDate ? toISODate(st.nextDate) : null,
+      daysRemaining: st.daysRemaining,
+      statusLabel,
+      level: st.level,
+      memo: s.memo || ''
+    });
+
+    // 研修履歴 (date は YYYY-MM-DD)
+    if (s.shinninDate) events.push({ date: s.shinninDate, name: s.name, role: roleLabel, type: '相談支援従事者初任者研修（講義部分）' });
+    if (s.basicDate)   events.push({ date: s.basicDate,   name: s.name, role: roleLabel, type: '基礎研修' });
+    if (s.practicalDate) events.push({ date: s.practicalDate, name: s.name, role: roleLabel, type: '実践研修' });
+    (s.updateHistory || []).forEach((u, i) => {
+      events.push({ date: u.date, name: s.name, role: roleLabel, type: `${i + 1}回目の更新研修` });
+    });
+
+    // 次のアクション
+    let note = '';
+    if (st.warnings.length) note += st.warnings.join(' / ');
+    if (st.tips.length) note += (note ? ' ／ ' : '') + st.tips.join(' / ');
+
+    nextActions.push({
+      name: s.name,
+      role: roleLabel,
+      action: st.nextTitle,
+      dateISO: st.nextDate ? toISODate(st.nextDate) : null,
+      days: st.daysRemaining == null ? '' : st.daysRemaining,
+      status: statusLabel,
+      level: st.level,
+      note
+    });
+  });
+
+  events.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  nextActions.sort((a, b) => {
+    const ad = a.days === '' ? Number.POSITIVE_INFINITY : a.days;
+    const bd = b.days === '' ? Number.POSITIVE_INFINITY : b.days;
+    return ad - bd;
+  });
+
+  return { rows, events, nextActions };
+}
+
+/* ============== 保存先パス表示（フッター） ============== */
+
+async function updateDataPathLabel() {
+  if (!IS_ELECTRON) return;
+  try {
+    const p = await window.electronAPI.getDataPath();
+    const footer = document.getElementById('dataPathLabel');
+    if (footer) footer.textContent = `保存先: ${p}`;
+  } catch {}
+}
+
+/* ============== 起動 ============== */
+
+async function init() {
+  const loaded = await loadData();
+  state.staff = loaded.staff;
+  renderList();
+  await updateDataPathLabel();
+}
+init();
+
+window.__sabikan = {
+  state, computeStatus, getUpdateDeadline, getPracticalEligibleDate, getFiscalYearEnd
+};
+
+</script>
+</body>
+</html>
